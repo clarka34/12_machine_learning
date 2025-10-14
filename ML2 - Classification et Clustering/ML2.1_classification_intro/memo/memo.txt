@@ -1,0 +1,31 @@
+1) What are the necessary preprocessing steps regarding:
+a) classes ?
+Check to make sure that there are approximately the same number of classes in the dataset. If the size of the classes is not balanced, here is a method that can be used: https://scikit-learn.org/stable/auto_examples/svm/plot_separating_hyperplane_unbalanced.html 
+
+b) categorical features ? 
+Categorical features that only have two features (ex: 0 and 1) can be left as is. Features with multiple categories can be separated into different columns where each category has its own row using pd.get_dummies(dataset, columns=multicategorical_features, dtype='int')
+
+c) continuous features ?
+Continuous features must be standardized and this can be done using StandardScalar(). Note: the StandardScalar is fit only to the training data
+
+2) Confusion matrix:
+a)How many patient were incorrectly diagnosed with a Heart disease (false positives) ? 5
+
+b)How many patient were incorrectly diagnosed as being Healthy (false negatives)? 12
+
+
+3) Changing the threshold:
+a)What is the precision if we change the threshold to have a 0.95 recall ? 0.48148148148148145
+
+b) How many patient were incorrectly diagnosed as being Healthy (false negatives)? 2
+
+
+4) Choosing an overall metric:
+
+a) If I can compute my test sample probabilities and care more about the positive class, which overall metric should I use to compare classifiers ? 
+average_precision_score
+The average precision is generally the preferred metric if you can compute your test samples probabiliies, and if you care more about the positive class and/or have an imbalanced dataset.
+
+b) And if I only have the class predictions and no probabilities ?
+F1 score
+A high F1 score indicates that the model has a good balance between precision and recall, meaning it can effectively identify positive cases while minimizing false positives and false negatives.
